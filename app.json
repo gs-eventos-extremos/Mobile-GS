@@ -11,16 +11,43 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.weatheremergency.app",
+      "config": {
+        "googleMapsApiKey": "AIzaSyDOdkVikQoziiSFfEcF0VBhP__mQABDsI0"
+      },
+      "infoPlist": {
+        "NSLocationWhenInUseUsageDescription": "Este app precisa da sua localização para mostrar hospitais e abrigos próximos em caso de emergência.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "Este app precisa da sua localização para mostrar hospitais e abrigos próximos em caso de emergência."
+      }
     },
     "android": {
       "adaptiveIcon": {
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.weatheremergency.app",
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyDOdkVikQoziiSFfEcF0VBhP__mQABDsI0"
+        }
+      },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "INTERNET"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermission": "Este app precisa da sua localização para mostrar hospitais e abrigos próximos em caso de emergência."
+        }
+      ]
+    ]
   }
 }
