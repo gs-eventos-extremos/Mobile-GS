@@ -3,18 +3,19 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { StatusBar } from 'expo-status-bar';
 
+import Onboarding from './screens/Onboarding/Onboarding';
 import Login from './screens/Login/Login';
 import Cadastro from './screens/Cadastro/Cadastro';
 import CadastroConcluido from './screens/CadastroConcluido/CadastroConcluido';
-import Onboarding from './screens/Onboarding/Onboarding';
-
+import BottomTabNavigator from './navigation/BottomTabNavigator';
 
 // Definindo os tipos das rotas
 export type RootStackParamList = {
+  Onboarding: undefined;
   Login: undefined;
   Cadastro: undefined;
   CadastroConcluido: undefined;
-  Onboarding: undefined;
+  MainTabs: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -24,15 +25,16 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="light" backgroundColor="#000000" />
       <Stack.Navigator
-        initialRouteName="Onboarding"
+        initialRouteName="MainTabs"
         screenOptions={{
           headerShown: false, // Remove o header padrão
         }}
       >
+        <Stack.Screen name="Onboarding" component={Onboarding} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="CadastroConcluido" component={CadastroConcluido} />
-         <Stack.Screen name="Onboarding" component={Onboarding} />
+        <Stack.Screen name="MainTabs" component={BottomTabNavigator} />
       </Stack.Navigator>
     </NavigationContainer>
   );
