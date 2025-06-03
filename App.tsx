@@ -7,6 +7,14 @@ import Onboarding from './screens/Onboarding/Onboarding';
 import Login from './screens/Login/Login';
 import Cadastro from './screens/Cadastro/Cadastro';
 import CadastroConcluido from './screens/CadastroConcluido/CadastroConcluido';
+import GuiaAlagamento from './screens/GuiaAlagamento/GuiaAlagamento';
+import GuiaDeslizamento from './screens/GuiaDeslizamento/GuiaDeslizamento';
+import GuiaQueimada from './screens/GuiaQueimada/GuiaQueimada';
+import GuiaSeca from './screens/GuiaSeca/GuiaSeca';
+import GuiaAvalanche from './screens/GuiaAvalanche/GuiaAvalanche';
+import GuiaTornado from './screens/GuiaTornado/GuiaTornado';
+import PoliticaDePrivacidade from './screens/PoliticaDePrivacidade/PoliticaDePrivacidade';
+import Perfil from './screens/Perfil/Perfil';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 
 // Definindo os tipos das rotas
@@ -16,6 +24,14 @@ export type RootStackParamList = {
   Cadastro: undefined;
   CadastroConcluido: undefined;
   MainTabs: undefined;
+  GuiaAlagamento: undefined;
+  GuiaDeslizamento: undefined;
+  GuiaQueimada: undefined;
+  GuiaSeca: undefined;
+  GuiaAvalanche: undefined;
+  GuiaTornado: undefined;
+  PoliticaDePrivacidade: undefined;
+  Perfil: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -27,7 +43,7 @@ export default function App() {
       <Stack.Navigator
         initialRouteName="MainTabs"
         screenOptions={{
-          headerShown: false, // Remove o header padrão
+          headerShown: false, 
         }}
       >
         <Stack.Screen name="Onboarding" component={Onboarding} />
@@ -35,6 +51,14 @@ export default function App() {
         <Stack.Screen name="Cadastro" component={Cadastro} />
         <Stack.Screen name="CadastroConcluido" component={CadastroConcluido} />
         <Stack.Screen name="MainTabs" component={BottomTabNavigator} />
+        <Stack.Screen name="GuiaAlagamento" component={GuiaAlagamento} />
+        <Stack.Screen name="GuiaDeslizamento" component={GuiaDeslizamento} />
+        <Stack.Screen name="GuiaQueimada" component={GuiaQueimada} />
+        <Stack.Screen name="GuiaSeca" component={GuiaSeca} />
+        <Stack.Screen name="GuiaAvalanche" component={GuiaAvalanche} />
+        <Stack.Screen name="GuiaTornado" component={GuiaTornado} />
+        <Stack.Screen name="PoliticaDePrivacidade" component={PoliticaDePrivacidade} />
+        <Stack.Screen name="Perfil" component={Perfil} />
       </Stack.Navigator>
     </NavigationContainer>
   );

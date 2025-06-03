@@ -7,6 +7,9 @@ import {
   SafeAreaView,
   ScrollView,
 } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import { NativeStackNavigationProp } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../../App';
 import styles from './Guia.styles';
 
 const guiaData = [
@@ -14,43 +17,56 @@ const guiaData = [
     id: 1,
     title: 'Alagamento',
     icon: require('../../assets/alagamento.png'),
+    screen: 'GuiaAlagamento' as keyof RootStackParamList,
   },
   {
     id: 2,
     title: 'Deslizamento',
     icon: require('../../assets/deslizamento.png'),
+    screen: null, // Temporário até criar a tela
   },
   {
     id: 3,
     title: 'Queimada',
     icon: require('../../assets/queimada.png'),
+    screen: null, // Temporário até criar a tela
   },
   {
     id: 4,
     title: 'Seca',
     icon: require('../../assets/seca.png'),
+    screen: null, // Temporário até criar a tela
   },
   {
     id: 5,
     title: 'Avalanches',
     icon: require('../../assets/avalanche.png'),
+    screen: null, // Temporário até criar a tela
   },
   {
     id: 6,
     title: 'Tornados',
     icon: require('../../assets/tornados.png'),
+    screen: null, // Temporário até criar a tela
   },
 ];
 
+type GuiaNavigationProp = NativeStackNavigationProp<RootStackParamList>;
+
 const Guia = () => {
+  const navigation = useNavigation<GuiaNavigationProp>();
   const handleProfilePress = () => {
     // Navegar para tela de perfil
-    console.log('Perfil pressionado');
+    navigation.navigate('Perfil');
   };
 
   const handleGuiaItemPress = (item: any) => {
     // Navegar para detalhes do guia
-    console.log('Item pressionado:', item.title);
+    if (item.screen) {
+      navigation.navigate(item.screen);
+    } else {
+      console.log('Tela ainda não criada para:', item.title);
+    }
   };
 
   return (
