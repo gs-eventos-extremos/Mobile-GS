@@ -23,31 +23,31 @@ const guiaData = [
     id: 2,
     title: 'Deslizamento',
     icon: require('../../assets/deslizamento.png'),
-    screen: null, // Temporário até criar a tela
+    screen: 'GuiaDeslizamento', // Temporário até criar a tela
   },
   {
     id: 3,
     title: 'Queimada',
     icon: require('../../assets/queimada.png'),
-    screen: null, // Temporário até criar a tela
+    screen: 'GuiaQueimada', // Temporário até criar a tela
   },
   {
     id: 4,
     title: 'Seca',
     icon: require('../../assets/seca.png'),
-    screen: null, // Temporário até criar a tela
+    screen: 'GuiaSeca', // Temporário até criar a tela
   },
   {
     id: 5,
     title: 'Avalanches',
     icon: require('../../assets/avalanche.png'),
-    screen: null, // Temporário até criar a tela
+    screen: 'GuiaAvalanche', // Temporário até criar a tela
   },
   {
     id: 6,
     title: 'Tornados',
     icon: require('../../assets/tornados.png'),
-    screen: null, // Temporário até criar a tela
+    screen: 'GuiaTornado', // Temporário até criar a tela
   },
 ];
 
