@@ -17,21 +17,10 @@ export type BottomTabParamList = {
 
 const Tab = createBottomTabNavigator<BottomTabParamList>();
 
-// Componente customizado para o tab bar
-const CustomTabBar = (props: any) => {
-  return (
-    <View style={styles.customTabBarContainer}>
-      <View style={styles.customTabBar}>
-        {props.children}
-      </View>
-    </View>
-  );
-};
-
 const BottomTabNavigator = () => {
   return (
     <Tab.Navigator
-      initialRouteName="Guia"
+      initialRouteName="Clima" // Mudança aqui: agora inicia na aba Clima
       screenOptions={{
         headerShown: false,
         tabBarStyle: styles.tabBar,
@@ -126,16 +115,6 @@ const styles = StyleSheet.create({
     backgroundColor: '#1DB954',
     borderTopLeftRadius: 20,
     borderTopRightRadius: 20,
-  },
-  customTabBarContainer: {
-    backgroundColor: 'transparent',
-  },
-  customTabBar: {
-    backgroundColor: '#000000',
-    borderTopLeftRadius: 20,
-    borderTopRightRadius: 20,
-    borderTopWidth: 3,
-    borderTopColor: '#1DB954',
   },
   tabIcon: {
     width: 28,

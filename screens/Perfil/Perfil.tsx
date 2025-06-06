@@ -10,6 +10,7 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
+import { useAuth } from '../../src/context/authContext';
 import CustomBottomTab from '../../components/CustomBottomTabNavigation';
 import styles from './Perfil.styles';
 
@@ -17,20 +18,28 @@ type PerfilNavigationProp = NativeStackNavigationProp<RootStackParamList>;
 
 const Perfil = () => {
   const navigation = useNavigation<PerfilNavigationProp>();
+  const { user, logout } = useAuth();
 
   const handleDadosUsuario = () => {
     console.log('Dados do usuário pressionado');
-    // Navegar para tela de dados do usuário
+    Alert.alert(
+      'Dados do Usuário',
+      user ? `Nome: ${user.name}\nE-mail: ${user.email}\nConta criada: ${new Date(user.createdAt).toLocaleDateString('pt-BR')}` : 'Usuário não encontrado',
+      [{ text: 'OK' }]
+    );
   };
 
   const handleLocalizacoes = () => {
     console.log('Localizações cadastradas pressionado');
-    // Navegar para tela de localizações
+    Alert.alert(
+      'Localizações',
+      'Funcionalidade em desenvolvimento.\nEm breve você poderá gerenciar suas localizações salvas.',
+      [{ text: 'OK' }]
+    );
   };
 
   const handlePoliticas = () => {
     console.log('Políticas de privacidade pressionado');
-    // Navegar para tela de políticas
     navigation.navigate('PoliticaDePrivacidade');
   };
 
@@ -46,9 +55,15 @@ const Perfil = () => {
         {
           text: 'Sair',
           style: 'destructive',
-          onPress: () => {
-            // Navegar para tela de login/onboarding
-            navigation.navigate('Onboarding');
+          onPress: async () => {
+            try {
+              await logout();
+              // O AuthContext já vai redirecionar automaticamente para o Onboarding
+              console.log('Logout realizado com sucesso');
+            } catch (error) {
+              console.error('Erro ao fazer logout:', error);
+              Alert.alert('Erro', 'Erro ao fazer logout. Tente novamente.');
+            }
           },
         },
       ]
@@ -69,6 +84,18 @@ const Perfil = () => {
           <View style={styles.avatarCircle}>
             <Image source={require('../../assets/user.png')} style={styles.avatarIcon} />
           </View>
+          {user && (
+            <Text style={{
+              color: '#FFFFFF',
+              fontSize: 18,
+              fontFamily: 'Montserrat',
+              fontWeight: '600',
+              marginTop: 15,
+              textAlign: 'center',
+            }}>
+              {user.name}
+            </Text>
+          )}
         </View>
 
         {/* Menu Grid */}

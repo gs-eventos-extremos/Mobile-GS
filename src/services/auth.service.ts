@@ -19,6 +19,7 @@ class AuthService {
       // Salvar token e dados do usuário
       await AsyncStorage.setItem('token', response.token);
       await AsyncStorage.setItem('user', JSON.stringify(response.user));
+      await AsyncStorage.setItem('tokenExpiration', response.expiresAt);
       
       return response;
     } catch (error) {
@@ -27,18 +28,63 @@ class AuthService {
   }
 
   async logout(): Promise<void> {
-    await AsyncStorage.removeItem('token');
-    await AsyncStorage.removeItem('user');
+    await AsyncStorage.multiRemove(['token', 'user', 'tokenExpiration']);
   }
 
   async isAuthenticated(): Promise<boolean> {
-    const token = await AsyncStorage.getItem('token');
-    return !!token;
+    try {
+      const token = await AsyncStorage.getItem('token');
+      const tokenExpiration = await AsyncStorage.getItem('tokenExpiration');
+      
+      if (!token || !tokenExpiration) {
+        return false;
+      }
+
+      // Verificar se o token não expirou
+      const expirationDate = new Date(tokenExpiration);
+      const now = new Date();
+      
+      if (now >= expirationDate) {
+        // Token expirado, fazer logout
+        await this.logout();
+        return false;
+      }
+
+      return true;
+    } catch (error) {
+      console.error('Erro ao verificar autenticação:', error);
+      return false;
+    }
   }
 
   async getCurrentUser(): Promise<UserResponseDto | null> {
-    const userStr = await AsyncStorage.getItem('user');
-    return userStr ? JSON.parse(userStr) : null;
+    try {
+      const userStr = await AsyncStorage.getItem('user');
+      return userStr ? JSON.parse(userStr) : null;
+    } catch (error) {
+      console.error('Erro ao obter usuário atual:', error);
+      return null;
+    }
+  }
+
+  async getToken(): Promise<string | null> {
+    try {
+      return await AsyncStorage.getItem('token');
+    } catch (error) {
+      console.error('Erro ao obter token:', error);
+      return null;
+    }
+  }
+
+  async updatePassword(email: string, newPassword: string): Promise<void> {
+    try {
+      await api.post('/api/auth/update-password', {
+        email,
+        newPassword
+      }, true);
+    } catch (error) {
+      throw error;
+    }
   }
 }
 
