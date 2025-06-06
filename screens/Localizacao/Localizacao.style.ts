@@ -1,0 +1,285 @@
+import { StyleSheet, Dimensions } from 'react-native';
+
+const { width } = Dimensions.get('window');
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: '#000000',
+  },
+  header: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 20,
+    paddingVertical: 15,
+    paddingTop: 50,
+  },
+  backButton: {
+    width: 40,
+    height: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 15,
+  },
+  backIcon: {
+    width: 24,
+    height: 24,
+    tintColor: '#1DB954',
+  },
+  headerTitle: {
+    fontSize: 24,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '600',
+    flex: 1,
+  },
+  content: {
+    flex: 1,
+    paddingHorizontal: 20,
+    paddingBottom: 120,
+  },
+  avatarContainer: {
+    alignItems: 'center',
+    marginVertical: 30,
+  },
+  avatarCircle: {
+    width: 80,
+    height: 80,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'transparent',
+  },
+  avatarIcon: {
+    width: 70,
+    height: 70,
+  },
+  addLocationContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 30,
+  },
+  addLocationText: {
+    fontSize: 18,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '600',
+    marginRight: 10,
+  },
+  addLocationButton: {
+    width: 30,
+    height: 30,
+    borderRadius: 15,
+    backgroundColor: '#1DB954',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  addLocationIcon: {
+    fontSize: 18,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  locationsList: {
+    flex: 1,
+  },
+  locationItem: {
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: '#1DB954',
+    borderRadius: 12,
+    padding: 15,
+    marginBottom: 15,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  locationInfo: {
+    flex: 1,
+  },
+  locationName: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '600',
+    marginBottom: 5,
+  },
+  locationAddress: {
+    fontSize: 14,
+    color: '#CCCCCC',
+    fontFamily: 'Montserrat',
+    fontWeight: '400',
+  },
+  locationActions: {
+    flexDirection: 'row',
+    alignItems: 'center',
+  },
+  editButton: {
+    marginRight: 15,
+  },
+  editIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#1DB954',
+  },
+  deleteButton: {
+    width: 20,
+    height: 20,
+  },
+  deleteIcon: {
+    width: 20,
+    height: 20,
+    tintColor: '#FF4444',
+  },
+  favoriteIcon: {
+    position: 'absolute',
+    top: -2,
+    right: 5,
+    fontSize: 16,
+  },
+  // Modal styles
+  modalOverlay: {
+    flex: 1,
+    backgroundColor: 'rgba(0, 0, 0, 0.8)',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  modalContainer: {
+    backgroundColor: '#1a1a1a',
+    borderWidth: 2,
+    borderColor: '#1DB954',
+    borderRadius: 12,
+    padding: 20,
+    width: width - 40,
+    maxHeight: '80%',
+  },
+  modalTitle: {
+    fontSize: 18,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '600',
+    marginBottom: 20,
+  },
+  formContainer: {
+    marginBottom: 20,
+  },
+  inputGroup: {
+    marginBottom: 15,
+  },
+  inputLabel: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '500',
+    marginBottom: 8,
+  },
+  input: {
+    height: 45,
+    backgroundColor: '#333333',
+    borderWidth: 1,
+    borderColor: '#1DB954',
+    borderRadius: 8,
+    paddingHorizontal: 12,
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+  },
+  inputRow: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  inputHalf: {
+    width: '48%',
+  },
+  favoriteContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  favoriteLabel: {
+    fontSize: 14,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '500',
+    marginRight: 10,
+  },
+  checkbox: {
+    width: 20,
+    height: 20,
+    borderWidth: 2,
+    borderColor: '#1DB954',
+    borderRadius: 4,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  checkboxChecked: {
+    backgroundColor: '#1DB954',
+  },
+  checkboxText: {
+    fontSize: 12,
+    color: '#000000',
+    fontWeight: 'bold',
+  },
+  modalButtons: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+  },
+  cancelButton: {
+    flex: 1,
+    height: 45,
+    backgroundColor: 'transparent',
+    borderWidth: 2,
+    borderColor: '#1DB954',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginRight: 10,
+  },
+  cancelButtonText: {
+    fontSize: 16,
+    color: '#1DB954',
+    fontFamily: 'Montserrat',
+    fontWeight: '600',
+  },
+  saveButton: {
+    flex: 1,
+    height: 45,
+    backgroundColor: '#1DB954',
+    borderRadius: 8,
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginLeft: 10,
+  },
+  saveButtonText: {
+    fontSize: 16,
+    color: '#000000',
+    fontFamily: 'Montserrat',
+    fontWeight: '600',
+  },
+  loadingContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  loadingText: {
+    fontSize: 16,
+    color: '#FFFFFF',
+    fontFamily: 'Montserrat',
+    fontWeight: '500',
+    marginTop: 20,
+  },
+  emptyContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingHorizontal: 40,
+  },
+  emptyText: {
+    fontSize: 16,
+    color: '#CCCCCC',
+    fontFamily: 'Montserrat',
+    fontWeight: '500',
+    textAlign: 'center',
+    lineHeight: 24,
+  },
+});
+
+export default styles;

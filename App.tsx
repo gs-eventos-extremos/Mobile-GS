@@ -19,6 +19,8 @@ import GuiaAvalanche from './screens/GuiaAvalanche/GuiaAvalanche';
 import GuiaTornado from './screens/GuiaTornado/GuiaTornado';
 import PoliticaDePrivacidade from './screens/PoliticaDePrivacidade/PoliticaDePrivacidade';
 import Perfil from './screens/Perfil/Perfil';
+import Dados from './screens/Dados/Dados';
+import Localizacao from './screens/Localizacao/Localizacao';
 import BottomTabNavigator from './navigation/BottomTabNavigator';
 
 // Definindo os tipos das rotas
@@ -36,6 +38,8 @@ export type RootStackParamList = {
   GuiaTornado: undefined;
   PoliticaDePrivacidade: undefined;
   Perfil: undefined;
+  Dados: undefined;
+  Localizacao: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -82,6 +86,8 @@ const AppNavigator = () => {
             <Stack.Screen name="GuiaTornado" component={GuiaTornado} />
             <Stack.Screen name="PoliticaDePrivacidade" component={PoliticaDePrivacidade} />
             <Stack.Screen name="Perfil" component={Perfil} />
+            <Stack.Screen name="Dados" component={Dados} />
+            <Stack.Screen name="Localizacao" component={Localizacao} />
           </>
         ) : (
           // Usuário não autenticado - mostrar telas de auth

@@ -21,21 +21,13 @@ const Perfil = () => {
   const { user, logout } = useAuth();
 
   const handleDadosUsuario = () => {
-    console.log('Dados do usuário pressionado');
-    Alert.alert(
-      'Dados do Usuário',
-      user ? `Nome: ${user.name}\nE-mail: ${user.email}\nConta criada: ${new Date(user.createdAt).toLocaleDateString('pt-BR')}` : 'Usuário não encontrado',
-      [{ text: 'OK' }]
-    );
+    console.log('Navegando para dados do usuário');
+    navigation.navigate('Dados');
   };
 
   const handleLocalizacoes = () => {
-    console.log('Localizações cadastradas pressionado');
-    Alert.alert(
-      'Localizações',
-      'Funcionalidade em desenvolvimento.\nEm breve você poderá gerenciar suas localizações salvas.',
-      [{ text: 'OK' }]
-    );
+    console.log('Navegando para localizações cadastradas');
+    navigation.navigate('Localizacao');
   };
 
   const handlePoliticas = () => {
