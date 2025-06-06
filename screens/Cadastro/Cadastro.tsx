@@ -8,10 +8,12 @@ import {
   KeyboardAvoidingView,
   Platform,
   Image,
+  Alert,
 } from 'react-native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
 import styles from './Cadastro.styles';
+import authService from '../../src/services/auth.service';
 
 type CadastroScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -32,10 +34,86 @@ const Cadastro = ({ navigation }: Props) => {
   const emailRef = useRef(null);
   const senhaRef = useRef(null);
 
-  const handleCadastro = () => {
-    // Aqui você pode adicionar a lógica de cadastro
-    console.log('Cadastro realizado:', { nome, email, senha });
+  const validateForm = (): boolean => {
+    if (!nome.trim()) {
+      Alert.alert('Erro', 'Por favor, insira seu nome');
+      return false;
+    }
+
+    if (!email.trim()) {
+      Alert.alert('Erro', 'Por favor, insira seu e-mail');
+      return false;
+    }
+
+    // Validação básica de e-mail
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      Alert.alert('Erro', 'Por favor, insira um e-mail válido');
+      return false;
+    }
+
+    if (!senha.trim()) {
+      Alert.alert('Erro', 'Por favor, insira sua senha');
+      return false;
+    }
+
+    // Validação de senha conforme a API
+    if (senha.length < 6) {
+      Alert.alert('Erro', 'A senha deve ter no mínimo 6 caracteres');
+      return false;
+    }
+
+    const senhaRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/;
+    if (!senhaRegex.test(senha)) {
+      Alert.alert('Erro', 'A senha deve conter pelo menos uma letra maiúscula, uma minúscula e um número');
+      return false;
+    }
+
+    return true;
   };
+
+  const handleCadastro = async () => {
+  if (!validateForm()) {
+    return;
+  }
+
+  setIsLoading(true);
+
+  try {
+    const response = await authService.register({
+      name: nome,
+      email: email.toLowerCase().trim(),
+      password: senha,
+    });
+
+    console.log('Cadastro realizado com sucesso:', response);
+    
+    // Navegar direto para tela de cadastro concluído (sem alert)
+    navigation.navigate('CadastroConcluido');
+
+    // Limpar campos
+    setNome('');
+    setEmail('');
+    setSenha('');
+
+  } catch (error: any) {
+    console.error('Erro no cadastro:', error);
+    
+    let errorMessage = 'Erro ao realizar cadastro. Tente novamente.';
+    
+    if (error.message) {
+      if (error.message.includes('Email já cadastrado')) {
+        errorMessage = 'Este e-mail já está cadastrado. Faça login ou use outro e-mail.';
+      } else {
+        errorMessage = error.message;
+      }
+    }
+
+    Alert.alert('Erro', errorMessage);
+  } finally {
+    setIsLoading(false);
+  }
+};
 
   const navigateToLogin = () => {
     navigation.navigate('Login');
@@ -50,7 +128,7 @@ const Cadastro = ({ navigation }: Props) => {
         {/* ProgressBar */}
         {isLoading && (
           <View style={styles.progressBar}>
-            <ActivityIndicator size="large" color="#FFFFFF" />
+            <ActivityIndicator size="large" color="#1DB954" />
           </View>
         )}
 
@@ -68,6 +146,7 @@ const Cadastro = ({ navigation }: Props) => {
             onChangeText={setNome}
             autoCapitalize="words"
             returnKeyType="next"
+            editable={!isLoading}
           />
         </View>
 
@@ -84,6 +163,7 @@ const Cadastro = ({ navigation }: Props) => {
             autoCapitalize="none"
             returnKeyType="next"
             ref={emailRef}
+            editable={!isLoading}
           />
         </View>
 
@@ -101,10 +181,12 @@ const Cadastro = ({ navigation }: Props) => {
               ref={senhaRef}
               returnKeyType="done"
               onSubmitEditing={handleCadastro}
+              editable={!isLoading}
             />
             <TouchableOpacity 
               style={styles.eyeButton}
               onPress={() => setShowPassword(!showPassword)}
+              disabled={isLoading}
             >
               <Image
                 source={require('../../assets/ver.png')}
@@ -115,14 +197,24 @@ const Cadastro = ({ navigation }: Props) => {
         </View>
 
         {/* Botão Cadastrar */}
-        <TouchableOpacity style={styles.signupButton} onPress={handleCadastro}>
-          <Text style={styles.signupButtonText}>Cadastrar</Text>
+        <TouchableOpacity 
+          style={[styles.signupButton, isLoading && { opacity: 0.7 }]} 
+          onPress={handleCadastro}
+          disabled={isLoading}
+        >
+          <Text style={styles.signupButtonText}>
+            {isLoading ? 'Cadastrando...' : 'Cadastrar'}
+          </Text>
         </TouchableOpacity>
 
         {/* Link para Login */}
         <View style={styles.loginContainer}>
           <Text style={styles.loginText}>Já possui cadastro?</Text>
-          <TouchableOpacity style={styles.loginButton} onPress={navigateToLogin}>
+          <TouchableOpacity 
+            style={styles.loginButton} 
+            onPress={navigateToLogin}
+            disabled={isLoading}
+          >
             <Text style={styles.loginButtonText}>Login</Text>
           </TouchableOpacity>
         </View>

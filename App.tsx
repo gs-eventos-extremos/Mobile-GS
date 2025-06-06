@@ -41,7 +41,7 @@ export default function App() {
     <NavigationContainer>
       <StatusBar style="light" backgroundColor="#000000" />
       <Stack.Navigator
-        initialRouteName="MainTabs"
+        initialRouteName="Onboarding"
         screenOptions={{
           headerShown: false, 
         }}

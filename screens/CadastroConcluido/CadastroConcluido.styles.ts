@@ -21,6 +21,14 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     lineHeight: 36,
   },
+  redirectText: {
+  fontSize: 16,
+  color: '#999999',
+  fontFamily: 'Montserrat',
+  fontWeight: 400,
+  textAlign: 'center',
+  marginTop: 20,
+},
 });
 
 export default styles;
