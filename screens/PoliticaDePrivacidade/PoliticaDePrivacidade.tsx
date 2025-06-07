@@ -10,19 +10,39 @@ import {
 import { useNavigation } from '@react-navigation/native';
 import { NativeStackNavigationProp } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../../App';
+import { CommonActions } from '@react-navigation/native';
 import CustomBottomTab from '../../components/CustomBottomTabNavigation';
 import styles from './PoliticaDePrivacidade.style';
 
-type GuiaAlagamentoNavigationProp = NativeStackNavigationProp<
+type PoliticaDePrivacidadeNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
   'PoliticaDePrivacidade'
 >;
 
 const PoliticaDePrivacidade = () => {
-  const navigation = useNavigation<GuiaAlagamentoNavigationProp>();
+  const navigation = useNavigation<PoliticaDePrivacidadeNavigationProp>();
 
   const handleBackPress = () => {
-    navigation.navigate('MainTabs');
+    // Navegar para MainTabs com a aba Guia ativa (onde está o Perfil)
+    navigation.dispatch(
+      CommonActions.reset({
+        index: 0,
+        routes: [
+          {
+            name: 'MainTabs',
+            state: {
+              routes: [
+                { name: 'Clima' },
+                { name: 'Guia' },
+                { name: 'Mapa' },
+                { name: 'Emergencia' },
+              ],
+              index: 1, // Índice 1 = Guia (onde está o Perfil)
+            },
+          },
+        ],
+      })
+    );
   };
 
   return (
