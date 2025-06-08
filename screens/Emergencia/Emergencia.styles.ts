@@ -26,15 +26,10 @@ const styles = StyleSheet.create({
     height: 44,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'transparent',
-    borderWidth: 2,
-    borderColor: '#1DB954',
-    borderRadius: 22,
   },
   profileIcon: {
-    width: 24,
-    height: 24,
-    tintColor: '#1DB954',
+    width: 44,
+    height: 44,
   },
   content: {
     flex: 1,

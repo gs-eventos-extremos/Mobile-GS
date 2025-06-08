@@ -96,13 +96,8 @@ const Login = ({ navigation }: Props) => {
   };
 
   const handleForgotPassword = () => {
-    Alert.alert(
-      'Redefinir Senha',
-      'Por favor, entre em contato com o suporte para redefinir sua senha.',
-      [
-        { text: 'OK', style: 'default' }
-      ]
-    );
+    // Navegar para tela de alterar senha
+    navigation.navigate('AlterarSenha');
   };
 
   const navigateToCadastro = () => {

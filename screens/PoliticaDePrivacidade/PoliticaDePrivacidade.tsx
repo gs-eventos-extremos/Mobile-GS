@@ -22,27 +22,9 @@ type PoliticaDePrivacidadeNavigationProp = NativeStackNavigationProp<
 const PoliticaDePrivacidade = () => {
   const navigation = useNavigation<PoliticaDePrivacidadeNavigationProp>();
 
-  const handleBackPress = () => {
-    // Navegar para MainTabs com a aba Guia ativa (onde está o Perfil)
-    navigation.dispatch(
-      CommonActions.reset({
-        index: 0,
-        routes: [
-          {
-            name: 'MainTabs',
-            state: {
-              routes: [
-                { name: 'Clima' },
-                { name: 'Guia' },
-                { name: 'Mapa' },
-                { name: 'Emergencia' },
-              ],
-              index: 1, // Índice 1 = Guia (onde está o Perfil)
-            },
-          },
-        ],
-      })
-    );
+    const handleBackPress = () => {
+    // Simplesmente voltar para a tela anterior (Perfil)
+    navigation.goBack();
   };
 
   return (

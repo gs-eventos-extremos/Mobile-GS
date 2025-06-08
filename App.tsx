@@ -10,6 +10,7 @@ import authService from './src/services/auth.service';
 import Onboarding from './screens/Onboarding/Onboarding';
 import Login from './screens/Login/Login';
 import Cadastro from './screens/Cadastro/Cadastro';
+import AlterarSenha from './screens/AlterarSenha/AlterarSenha';
 import CadastroConcluido from './screens/CadastroConcluido/CadastroConcluido';
 import GuiaAlagamento from './screens/GuiaAlagamento/GuiaAlagamento';
 import GuiaDeslizamento from './screens/GuiaDeslizamento/GuiaDeslizamento';
@@ -40,6 +41,7 @@ export type RootStackParamList = {
   Perfil: undefined;
   Dados: undefined;
   Localizacao: undefined;
+  AlterarSenha: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -95,6 +97,7 @@ const AppNavigator = () => {
             <Stack.Screen name="Onboarding" component={Onboarding} />
             <Stack.Screen name="Login" component={Login} />
             <Stack.Screen name="Cadastro" component={Cadastro} />
+            <Stack.Screen name="AlterarSenha" component={AlterarSenha} />
             <Stack.Screen name="CadastroConcluido" component={CadastroConcluido} />
           </>
         )}
