@@ -1,3 +1,4 @@
+// src/services/api.ts
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 // Para emulador Android
@@ -112,6 +113,7 @@ class ApiService {
     }
   }
 
+  // ✅ MÉTODO PUT ADICIONADO/VERIFICADO
   async put<T>(endpoint: string, data: any, authenticated: boolean = true): Promise<T> {
     try {
       console.log(`Making PUT request to: ${this.baseUrl}${endpoint}`);

@@ -1,3 +1,4 @@
+// src/services/auth.service.ts
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import api from './api';
 import { CreateUserDto, UserResponseDto, LoginUserDto, LoginResponseDto } from '../types/auth.types';
@@ -76,12 +77,13 @@ class AuthService {
     }
   }
 
+  // ✅ CORREÇÃO: Alterar de POST para PUT
   async updatePassword(email: string, newPassword: string): Promise<void> {
     try {
-      await api.post('/api/auth/update-password', {
+      await api.put('/api/auth/update-password', {
         email,
         newPassword
-      }, true);
+      }, true); // ✅ Mudança aqui: POST → PUT
     } catch (error) {
       throw error;
     }
